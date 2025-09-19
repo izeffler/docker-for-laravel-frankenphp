@@ -3,8 +3,6 @@
 [![Docker](https://img.shields.io/badge/Docker-Compose-blue?logo=docker)](https://www.docker.com/)
 [![FrankenPHP](https://img.shields.io/badge/FrankenPHP-PHP%20Server-green?logo=php)](https://frankenphp.dev/)
 
-Credits: [@Pansiere](https://github.com/Pansiere)
-
 ---
 
 ## 📖 Overview
@@ -129,5 +127,6 @@ docker exec -it mysql mysql -uroot -ppassword
 ---
 
 ## 📜 License
+
 
 This project is open-sourced under the [MIT license](LICENSE).
