@@ -39,6 +39,7 @@ services:
     working_dir: /app
     ports:
       - "80:80"
+      - "443:443"
     networks:
       environment_network:
         ipv4_address: 172.29.0.4
