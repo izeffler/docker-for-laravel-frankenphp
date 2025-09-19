@@ -12,7 +12,9 @@ Credits: [@Pansiere](https://github.com/Pansiere)
 This project provides a **Docker environment for Laravel** that simplifies the setup of your local development environment.
 
 ✅ Runs **Laravel with FrankenPHP + Caddy + MySQL + phpMyAdmin**
+
 ✅ **Vite** runs automatically in the background (no need to run `npm run dev`)
+
 ✅ Pre-configured containers for faster development
 
 > 💡 **Why FrankenPHP?**
