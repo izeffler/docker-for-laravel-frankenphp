@@ -1,6 +1,7 @@
-FROM php:8.3-fpm
+FROM dunglas/frankenphp:1-php8.3
 
 # Instala dependências do sistema
+USER root
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -28,18 +29,16 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Ajusta UID/GID do www-data para bater com o do host (1000 é o padrão em muitos sistemas)
+# Ajusta UID/GID do www-data para bater com o host
 RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 
-# Garante que as pastas graváveis pelo Laravel tenham permissão
-RUN mkdir -p /var/www/storage /var/www/bootstrap/cache \
-    && chown -R www-data:www-data /var/www \
-    && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+# Cria e ajusta permissões para o Laravel
+RUN mkdir -p /app/storage /app/bootstrap/cache \
+    && chown -R www-data:www-data /app \
+    && chmod -R 775 /app/storage /app/bootstrap/cache
 
-# Copia o Composer
+# Copia o Composer da imagem oficial
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www
-
-# Define o usuário padrão do container como www-data
+WORKDIR /app
 USER www-data
