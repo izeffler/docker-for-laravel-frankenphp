@@ -1,6 +1,7 @@
-# 🚀 Docker for Laravel
+# 🚀 Docker for Laravel (with FrankenPHP + Caddy)
 
 [![Docker](https://img.shields.io/badge/Docker-Compose-blue?logo=docker)](https://www.docker.com/)
+[![FrankenPHP](https://img.shields.io/badge/FrankenPHP-PHP%20Server-green?logo=php)](https://frankenphp.dev/)
 
 Credits: [@Pansiere](https://github.com/Pansiere)
 
@@ -8,19 +9,22 @@ Credits: [@Pansiere](https://github.com/Pansiere)
 
 ## 📖 Overview
 
-This project provides a **Docker environment for Laravel** that simplifies the setup of your local development environment.  
+This project provides a **Docker environment for Laravel** that simplifies the setup of your local development environment.
 
-✅ Runs **Laravel + PHP + MySQL + phpMyAdmin**  
-✅ **Vite** runs automatically in the background (no need to run `npm run dev`)  
-✅ Pre-configured containers for faster development  
+✅ Runs **Laravel with FrankenPHP + Caddy + MySQL + phpMyAdmin**
+✅ **Vite** runs automatically in the background (no need to run `npm run dev`)
+✅ Pre-configured containers for faster development
+
+> 💡 **Why FrankenPHP?**
+> FrankenPHP is a modern PHP application server built on top of Caddy. It replaces the traditional **Nginx + PHP-FPM** setup, making everything simpler and faster.
 
 ---
 
 ## ⚡ Requirements
 
-- [Docker](https://docs.docker.com/get-docker/) installed  
-- [Docker Compose](https://docs.docker.com/compose/install/) installed  
-- Laravel project (existing or new)  
+* [Docker](https://docs.docker.com/get-docker/) installed
+* [Docker Compose](https://docs.docker.com/compose/install/) installed
+* Laravel project (existing or new)
 
 ---
 
@@ -45,7 +49,7 @@ DB_PASSWORD=password
 
 3. Prepare your `vite.config.js` file and configure it with the following server options:
 
-```bash
+```js
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
@@ -79,23 +83,23 @@ docker compose up -d --build
 
 ## 🌐 Services & Access
 
-* Laravel app: [http://localhost](http://localhost)
+* Laravel app (served by **FrankenPHP + Caddy**): [http://localhost](http://localhost)
 * phpMyAdmin: [http://localhost:8080](http://localhost:8080) (auto login enabled)
 
 ---
 
 ## 🐳 Container Access
 
-Open a PHP container shell:
+Open a FrankenPHP container shell:
 
 ```bash
-docker exec -it php bash
+docker exec -it frankenphp sh
 ```
 
 Run MySQL commands inside the MySQL container:
 
 ```bash
-docker exec -i mysql -uroot -ppassword
+docker exec -it mysql mysql -uroot -ppassword
 ```
 
 ---
@@ -125,4 +129,3 @@ docker exec -i mysql -uroot -ppassword
 ## 📜 License
 
 This project is open-sourced under the [MIT license](LICENSE).
-
